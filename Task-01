@@ -1,0 +1,29 @@
+def encrypt(text, shift):
+    result = " "
+    for i in range(len(text)):
+        char = text[i]
+        if char.isupper():
+            result += chr((ord(char) + shift - 65) % 26 + 65)
+        elif char.islower():
+            result += chr((ord(char) + shift - 97) % 26 + 97)
+        else:
+            result += char
+    return result
+
+def decrypt(text, shift):
+    return encrypt(text, -shift)
+
+def main():
+    choice = input("Would you like to (E)ncrypt or (D)ecrypt a message? ").strip().upper()
+    message = input("Enter your message: ").strip()
+    shift = int(input("Enter shift value: ").strip())
+    
+    if choice == 'E':
+        print("Encrypted message:", encrypt(message, shift))
+    elif choice == 'D':
+        print("Decrypted message:", decrypt(message, shift))
+    else:
+        print("Invalid choice! Please select 'E' for encryption or 'D' for decryption.")
+
+if __name__ == "__main__":
+    main()
